@@ -1,0 +1,16 @@
+{
+  "image": "artifactory.paesslergmbh.de/img-prod-docker/golang:1.24.0-devcontainer",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "editorconfig.editorconfig",
+        "golang.go"
+      ],
+      "settings": {
+        "[json]": {
+          "files.insertFinalNewline": false
+        }
+      }
+    }
+  }
+}
