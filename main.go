@@ -75,25 +75,16 @@ func marshalUserData() {
 }
 
 func signUserData() {
-	var interests = []string{"golang", "python", "javascript"}
-
-	var user = User{
-		Name:        "Bob",
-		Age:         59,
-		Interests:   interests,
-		Active:      true,
-		Verified:    false,
-		lastLoginAt: "today",
+	// Read the JSON file
+	u, err := os.ReadFile("user.json")
+	if err != nil {
+		log.Fatalf("Failed to read JSON file: %v", err)
 	}
 
-	u, err := json.MarshalIndent(user, "", INDENT)
+	var user User
+	err = json.Unmarshal(u, &user)
 	if err != nil {
-		panic(err)
-	}
-
-	err = os.WriteFile("user.json", u, 0644)
-	if err != nil {
-		log.Fatalf("Failed to write JSON file: %v", err)
+		log.Fatalf("Failed to unmarshal JSON data: %v", err)
 	}
 
 	// Generate or load RSA key
